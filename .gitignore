@@ -74,4 +74,4 @@ Plugins
 # Cache files for the editor to use
 DerivedDataCache/*
 
-Content/testOnPaint
+testOnPaint
