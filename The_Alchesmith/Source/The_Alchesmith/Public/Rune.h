@@ -42,7 +42,6 @@ public:
 	~URune();
 
 private:
-	void loadDrawing(std::string const& filepath);
 
 	UPROPERTY()
 	TArray<bool> drawing;
