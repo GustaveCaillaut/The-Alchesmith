@@ -1,17 +1,18 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+
+#include "RenderTargetExporter.h"
 #include "ImageUtils.h"
 #include "RenderUtils.h"
-#include "RenderTargetExporter.h"
 
 
 static int32 const N = 64; //Taille de l'image à l'export
 
 
-TArray<bool> URenderTargetExporter::ExportRenderTargetToBitmap(UTextureRenderTarget2D* renderTarget) {
+TArray<float> URenderTargetExporter::ExportRenderTargetToBitmap(UTextureRenderTarget2D* renderTarget) {
 	if (renderTarget == NULL) {
 		UE_LOG(LogTemp, Warning, TEXT("What the fuck did you do?!"))
-			return TArray<bool>();
+			return TArray<float>();
 	}
 
 	FTextureRenderTargetResource* resource = renderTarget->GameThread_GetRenderTargetResource();
@@ -28,9 +29,9 @@ TArray<bool> URenderTargetExporter::ExportRenderTargetToBitmap(UTextureRenderTar
 	
 ;
 
-	Async(EAsyncExecution::Thread, [pixels = MoveTemp(pixels), sizex, sizey]() -> TArray<bool> {
+	/*Async(EAsyncExecution::Thread, [pixels = MoveTemp(pixels), sizex, sizey]() -> TArray<float> {
 
-		TArray<bool> binaryImage;
+		TArray<float> binaryImage;
 		binaryImage.Reserve(N * N);
 
 
@@ -42,12 +43,14 @@ TArray<bool> URenderTargetExporter::ExportRenderTargetToBitmap(UTextureRenderTar
 
 		for (FColor pixel : dstDownScaled) {
 			if (pixel.R + pixel.G + pixel.B < 250 * 3) {
-				binaryImage.Add(true);
+				binaryImage.Add(1.0f);
 			}
 			else {
-				binaryImage.Add(false);
+				binaryImage.Add(0.0f);
 			}
 		}
 		return binaryImage;
-	});
+	});*/
+
+	return TArray<float>();
 }
