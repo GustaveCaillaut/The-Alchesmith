@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "Rune.generated.h"
 
-
 /**
  * Custom enum to demonstrate how to expose enums to Blueprints.
  */
@@ -19,7 +18,7 @@ enum class ERuneID : uint8 {
 };
 
 /**
- * 
+ *
  */
 UCLASS(BlueprintType)
 class THE_ALCHESMITH_API URune : public UObject {
@@ -32,8 +31,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FColor drawColor;
 
-	
-	
+	UFUNCTION(BlueprintCallable)
+	int32 GetFusionID(ERuneID j);
+
 
 
 	UFUNCTION(BlueprintCallable)
