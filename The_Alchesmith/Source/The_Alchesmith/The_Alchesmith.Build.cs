@@ -5,15 +5,14 @@ using System.IO;
 
 public class The_Alchesmith : ModuleRules
 {
-	public The_Alchesmith(ReadOnlyTargetRules Target) : base(Target)
-	{
-		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
-	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+    public The_Alchesmith(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+
+        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
 
         // --- ONNX Runtime Integration ---
-        string ThirdPartyPath = Path.Combine(ModuleDirectory, "..", "ThirdParty", "ONNXRuntime");
-
+        string ThirdPartyPath = Path.Combine(ModuleDirectory, "../ThirdParty", "ONNXRuntime");
         string IncludePath = Path.Combine(ThirdPartyPath, "include");
         string LibPath = Path.Combine(ThirdPartyPath, "lib");
         string BinPath = Path.Combine(ThirdPartyPath, "bin");
@@ -24,24 +23,29 @@ public class The_Alchesmith : ModuleRules
         // Library for linking
         PublicAdditionalLibraries.Add(Path.Combine(LibPath, "onnxruntime.lib"));
 
-        // Delay-load DLL so Unreal Editor starts even if it's missing (safeguard)
+        // Delay-load the DLL (avoid load failures if not found immediately)
         PublicDelayLoadDLLs.Add("onnxruntime.dll");
 
-        // Ensure DLL gets copied to the packaged build directory
-        RuntimeDependencies.Add("$(TargetOutputDir)/onnxruntime.dll",
-                                Path.Combine(BinPath, "onnxruntime.dll"));
+        // --- Runtime Dependencies ---
+        // Copy the ONNX Runtime DLL next to the built module (for both Editor & Packaged builds)
+        string ProjectBinDir = Path.Combine(ModuleDirectory, "../../Binaries/Win64");
+        RuntimeDependencies.Add(Path.Combine(ProjectBinDir, "onnxruntime.dll"), Path.Combine(BinPath, "onnxruntime.dll"));
 
         // Also copy the ONNX model to packaged build directory
         string ModelPath = Path.Combine(ModuleDirectory, "../../Content/Models/rune_cnn.onnx");
         RuntimeDependencies.Add("$(TargetOutputDir)/rune_cnn.onnx", ModelPath);
 
+        // --- Environment Path fix (ensure correct DLL is found first) ---
+        string FullBinPath = Path.GetFullPath(BinPath);
+        System.Environment.SetEnvironmentVariable(
+            "PATH",
+            FullBinPath + Path.PathSeparator + System.Environment.GetEnvironmentVariable("PATH")
+        );
 
-        // Uncomment if you are using Slate UI
+        PrivateDependencyModuleNames.AddRange(new string[] { });
+
+        // Optional UI / Online subsystems
         // PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
-
-        // Uncomment if you are using online features
         // PrivateDependencyModuleNames.Add("OnlineSubsystem");
-
-        // To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
     }
 }
