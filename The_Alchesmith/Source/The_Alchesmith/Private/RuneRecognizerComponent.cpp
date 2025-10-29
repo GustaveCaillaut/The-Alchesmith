@@ -86,8 +86,8 @@ TArray<float> URuneRecognizerComponent::PredictRune(const TArray<float>& InputFl
 
     try
     {
-        // Create input tensor [1,1,64,64]
-        std::vector<int64_t> shape = { 1, 1, 64, 64 };
+        // Create input tensor [1,64,64,1]
+        std::vector<int64_t> shape = { 1, 64, 64, 1 };
         std::vector<float>   data(InputFloats.GetData(), InputFloats.GetData() + InputFloats.Num());
 
         Ort::MemoryInfo memInfo = Ort::MemoryInfo::CreateCpu(OrtDeviceAllocator, OrtMemTypeCPU);
@@ -117,13 +117,15 @@ TArray<float> URuneRecognizerComponent::PredictRune(const TArray<float>& InputFl
         // Argmax
         int32 bestIdx = 0;
         float bestVal = (Probs.Num() > 0) ? Probs[0] : 0.f;
-        for (int32 i = 1; i < Probs.Num(); ++i)
+        for (int32 i = 1; i < Probs.Num(); i++)
         {
             if (Probs[i] > bestVal)
             {
                 bestVal = Probs[i];
                 bestIdx = i;
             }
+
+            UE_LOG(LogTemp, Error, TEXT("OK Pas ok"));
         }
 
         OutBestIndex = bestIdx;
