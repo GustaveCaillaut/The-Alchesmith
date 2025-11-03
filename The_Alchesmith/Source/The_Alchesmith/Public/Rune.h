@@ -16,7 +16,13 @@ enum class ERuneID : uint8 {
 	EARTH UMETA(DisplayName = "Rune of Earth"),
 	LIGHTNING UMETA(DisplayName = "Rune of Lightning"),
 	MOUNTAIN UMETA(DisplayName = "Rune of Mountain"),
-	MAGNETISM UMETA(DisplayName = "Rune of Magnetism")
+	MAGNETISM UMETA(DisplayName = "Rune of Magnetism"),
+	LIGHT UMETA(DisplayName = "Rune of Light"),
+	DARKNESS UMETA(DisplayName = "Rune of Darkness"),
+	STEEL UMETA(DisplayName = "Rune of Steel"),
+	INVERSION UMETA(DisplayName = "Rune of Inversion"),
+	GRAVITY UMETA(DisplayName = "Rune of Gravity"),
+	SEA UMETA(DisplayName = "Rune of Sea"),
 };
 
 /**
