@@ -14,7 +14,9 @@ enum class ERuneID : uint8 {
 	FIRE UMETA(DisplayName = "Rune of Fire"),
 	AIR UMETA(DisplayName = "Rune of Air"),
 	EARTH UMETA(DisplayName = "Rune of Earth"),
-	LIGHTNING UMETA(DisplayName = "Rune of Lightning")
+	LIGHTNING UMETA(DisplayName = "Rune of Lightning"),
+	MOUNTAIN UMETA(DisplayName = "Rune of Mountain"),
+	MAGNETISM UMETA(DisplayName = "Rune of Magnetism")
 };
 
 /**

@@ -3,13 +3,15 @@
 
 #include "Rune.h"
 
-static const int32 N = 5;
+static const int32 N = 7;
 static const int32 FusionMatrix[N * N] = {
-	0, 0, 0, 0, 0, // Row 0
-	1, 0, 4, 0, 0, // Row 1
-	2, 4, 0, 0, 0, // Row 2
-	3, 0, 0, 0, 0, // Row 3
-	4, 0, 0, 0, 0  // Row 4
+	0, 1, 2, 3, 4, 5, 6, // Row None
+	0, 0, 4, 0, 0, 0, 0, // Row Fire
+	0, 4, 0, 0, 0, 0, 0, // Row Air
+	0, 0, 0, 5, 6, 0, 0, // Row Earth
+	0, 0, 0, 6, 0, 0, 0, // Row Lightning
+	0, 0, 0, 0, 0, 0, 0, // Row Mountain
+	0, 0, 0, 0, 0, 0, 0, // Row Magnetism
 };
 int32 URune::GetFusionID(ERuneID j) {
 	int32 old_id = static_cast<int32>(this->id);
@@ -46,6 +48,20 @@ void URune::Init(ERuneID idToSet) {
 
 
 	case ERuneID::LIGHTNING:
+		this->id = idToSet;
+		this->drawColor = FColor::Yellow;
+		this->drawing.Append(temp, 4);
+
+		break;
+
+	case ERuneID::MOUNTAIN:
+		this->id = idToSet;
+		this->drawColor = FColor::Yellow;
+		this->drawing.Append(temp, 4);
+
+		break;
+
+	case ERuneID::MAGNETISM:
 		this->id = idToSet;
 		this->drawColor = FColor::Yellow;
 		this->drawing.Append(temp, 4);
