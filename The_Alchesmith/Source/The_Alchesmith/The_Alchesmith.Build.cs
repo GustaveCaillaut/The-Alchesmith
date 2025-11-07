@@ -32,8 +32,8 @@ public class The_Alchesmith : ModuleRules
         RuntimeDependencies.Add(Path.Combine(ProjectBinDir, "onnxruntime.dll"), Path.Combine(BinPath, "onnxruntime.dll"));
 
         // Also copy the ONNX model to packaged build directory
-        string ModelPath = Path.Combine(ModuleDirectory, "../../Content/Models/rune_cnn.onnx");
-        RuntimeDependencies.Add("$(TargetOutputDir)/rune_cnn.onnx", ModelPath);
+        string ModelPath = Path.Combine(ModuleDirectory, "../../Content/Models/rune_cnn_9.onnx");
+        RuntimeDependencies.Add("$(TargetOutputDir)/rune_cnn_9.onnx", ModelPath);
 
         // --- Environment Path fix (ensure correct DLL is found first) ---
         string FullBinPath = Path.GetFullPath(BinPath);

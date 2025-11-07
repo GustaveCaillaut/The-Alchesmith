@@ -20,7 +20,7 @@ bool URuneRecognizerComponent::InitModel()
     // For packaged builds, fall back to the executable directory
     if (!FPlatformFileManager::Get().GetPlatformFile().FileExists(*AbsPath))
     {
-        AbsPath = FPaths::ConvertRelativePathToFull(FPaths::Combine(FPlatformProcess::BaseDir(), TEXT("rune_cnn.onnx")));
+        AbsPath = FPaths::ConvertRelativePathToFull(FPaths::Combine(FPlatformProcess::BaseDir(), TEXT("rune_cnn_9.onnx")));
     }
 
     return LoadSession(AbsPath);

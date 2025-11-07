@@ -9,7 +9,7 @@
 #include "RuneRecognizerComponent.generated.h"
 
 /**
- * Component that loads an ONNX model (rune_cnn.onnx)
+ * Component that loads an ONNX model (rune_cnn_9.onnx)
  * and can predict which rune is drawn based on a 64x64 float array.
  */
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
@@ -20,9 +20,9 @@ class THE_ALCHESMITH_API URuneRecognizerComponent : public UActorComponent
 public:
     URuneRecognizerComponent();
 
-    /** Relative path to the ONNX model (default: Content/Models/rune_cnn.onnx) */
+    /** Relative path to the ONNX model (default: Content/Models/rune_cnn_9.onnx) */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Rune")
-    FString ModelRelativePath = TEXT("Content/Models/rune_cnn.onnx");
+    FString ModelRelativePath = TEXT("Content/Models/rune_cnn_9.onnx");
 
     /** Confidence threshold for rune recognition */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Rune")
