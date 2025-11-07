@@ -21,7 +21,7 @@ public:
 
 
 	UFUNCTION(BlueprintCallable)
-	static TArray<float> ExportRenderTargetToBitmap(UTextureRenderTarget2D* renderTarget);
+	static TArray<float> ExportRenderTargetToBinary(UTextureRenderTarget2D* renderTarget);
 
 
 };

@@ -35,7 +35,7 @@ void URune::Init(ERuneID idToSet) {
 		this->id = idToSet;
 		this->drawColor = FColor::Red;
 		this->drawing.Append(temp, 4);
-		this->magDmg = 1.5f;
+		this->magDmg = 1.4f;
 		this->physDmg = 1.2f;
 		this->precision = 0.1f;
 		this->magPen = 0.2f;
@@ -82,7 +82,7 @@ void URune::Init(ERuneID idToSet) {
 		this->drawColor = FColor::Yellow;
 		this->drawing.Append(temp, 4);
 		this->physDmg = 4.0f;
-		this->magDmg = 1.0;
+		this->magDmg = 1.0f;
 		this->precision = -0.4f;
 		this->magPen = 0.0f;
 		this->physPen = 0.3f;
