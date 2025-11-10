@@ -36,6 +36,21 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	ERuneID id = ERuneID::NONE;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float physDmg = 1.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float magDmg = 1.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float physPen = 1.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float magPen = 1.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float precision = 1.0f;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FColor drawColor;
 
